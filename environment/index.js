@@ -23,7 +23,7 @@ async function run() {
     const keyId = publicKey.KeyId;
 
     const encryptedValue = encryptValue(secret, key);
-    const environmentSecretUrl = "repositories/" + repo + "/environments/" + env + "/secrets/" name;
+    const environmentSecretUrl = "repositories/" + repo + "/environments/" + env + "/secrets/" + name;
     saveSecret(api, token, environmentSecretUrl, encryptedValue, keyId);
 }
 

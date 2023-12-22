@@ -1,15 +1,9 @@
 import core from '@actions/core';
 import github from '@actions/github';
 import { Octokit } from 'octokit';
-import { log, debug, logJson, debugJson } from './log.ts';
+import { log, debug, logJson, debugJson } from './log';
 
-
-interface PublicKeyResponse {
-    key: string;
-    key_id: string;
-}
-
-export async function getPublicKey(api: string, token: string, url: string): Promise<PublicKeyResponse> {
+export async function getPublicKey(api, token, url) {
     try {
         const octokit = new Octokit({
             baseUrl: api,
@@ -30,8 +24,8 @@ export async function getPublicKey(api: string, token: string, url: string): Pro
         }
 
         return {
-            key: response.data.key: string,
-            keyId: response.data.key_id: string
+            key: response.data.key,
+            keyId: response.data.key_id
         };
     } catch (error) {
         core.setFailed(error.message);
@@ -39,7 +33,7 @@ export async function getPublicKey(api: string, token: string, url: string): Pro
     }
 }
 
-export async function saveSecret(api: string, token: string, url: string, secret: string, id: string): void {
+export async function saveSecret(api, token, url, secret, id) {
     try {
         const octokit = new Octokit({
             baseUrl: api,
@@ -66,7 +60,7 @@ export async function saveSecret(api: string, token: string, url: string, secret
     }
 }
 
-export function encryptValue(valueToEncrypt: string, publicKey: string): string {
+export function encryptValue(valueToEncrypt, publicKey) {
     const sodium = require('libsodium-wrappers')
 
     sodium.ready.then(() => {

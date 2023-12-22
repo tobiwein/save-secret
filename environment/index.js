@@ -6,7 +6,7 @@ import { getPublicKey, encryptValue, saveSecret } from '../common/main.js';
 async function run() {
     const token = core.getInput('token');
     const env = core.getInput('environmentName');
-    const toEnc = core.getInput("secret");
+    const secret = core.getInput("secret");
     const name = core.getInput("secretName");
 
     let api = core.getInput('githubApi');

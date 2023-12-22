@@ -1,6 +1,6 @@
 import core from '@actions/core';
 import github from '@actions/github';
-import { default as sodium } from 'libsodium-wrappers';
+import { _sodium as sodium } from 'libsodium-wrappers';
 import { Octokit } from 'octokit';
 import { log, debug, logJson, debugJson } from './log.js';
 

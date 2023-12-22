@@ -1,5 +1,6 @@
 import core from '@actions/core';
 import github from '@actions/github';
+import * as sodium from 'libsodium-wrappers';
 import { Octokit } from 'octokit';
 import { log, debug, logJson, debugJson } from './log.js';
 
@@ -61,8 +62,6 @@ export async function saveSecret(api, token, url, secret, id) {
 }
 
 export function encryptValue(valueToEncrypt, publicKey) {
-    const sodium = require('libsodium-wrappers')
-
     sodium.ready.then(() => {
       let binkey = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL)
       let binsec = sodium.from_string(valueToEncrypt)

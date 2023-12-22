@@ -70,8 +70,6 @@ export async function encryptValue(valueToEncrypt, publicKey) {
     let encBytes = sodium.crypto_box_seal(binsec, binkey)
 
     let output = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL)
-
-    return output;
 }
 
 export async function libsodium() {

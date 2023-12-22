@@ -1,7 +1,7 @@
 import core from '@actions/core';
 import github from '@actions/github';
 import { Octokit } from 'octokit';
-import { log, debug, logJson, debugJson } from './log';
+import { log, debug, logJson, debugJson } from './log.js';
 
 export async function getPublicKey(api, token, url) {
     try {

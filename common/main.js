@@ -1,6 +1,6 @@
 import core from '@actions/core';
 import github from '@actions/github';
-import { _sodium as sodium } from 'libsodium-wrappers';
+import _sodium from 'libsodium-wrappers';
 import { Octokit } from 'octokit';
 import { log, debug, logJson, debugJson } from './log.js';
 
@@ -62,14 +62,17 @@ export async function saveSecret(api, token, url, secret, id) {
 }
 
 export function encryptValue(valueToEncrypt, publicKey) {
-    sodium.ready.then(() => {
-      let binkey = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL)
-      let binsec = sodium.from_string(valueToEncrypt)
+    await (async() -> {
+        await _sodium.ready;
+        const sodium = _sodium;
 
-      let encBytes = sodium.crypto_box_seal(binsec, binkey)
+        let binkey = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL)
+        let binsec = sodium.from_string(valueToEncrypt)
 
-      let output = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL)
+        let encBytes = sodium.crypto_box_seal(binsec, binkey)
 
-      return output;
-    });
+        let output = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL)
+
+        return output;
+    })
 }

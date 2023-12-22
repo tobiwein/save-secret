@@ -8,12 +8,18 @@ inputs:
     required: true
   githubApi:
     description: 'URL of the REST-API of your organization.'
-    default: 'https://api.github.com'
+    default: ''
   repositoryId:
     description: 'The unique identifier of the repository.'
-    required: true
+    default: ''
   environmentName:
     description: 'The name of the environment.'
+    required: true
+  secret:
+    description: 'The secret value that you want to store.'
+    required: true
+  secretName:
+    description: 'The name of the secret the value should be stored in.'
     required: true
 
 runs:

@@ -1,0 +1,21 @@
+name: 'Save environment secret'
+description: 'Encrypts and saves a secret value to an environment'
+author: '@tobiwein'
+
+inputs:
+  token:
+    description: 'GitHub access token for authorization.'
+    required: true
+  githubApi:
+    description: 'URL of the REST-API of your organization.'
+    default: 'https://api.github.com'
+  repositoryId:
+    description: 'The unique identifier of the repository.'
+    required: true
+  environmentName:
+    description: 'The name of the environment.'
+    required: true
+
+runs:
+  using: node20
+  main: index.js

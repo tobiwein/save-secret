@@ -62,7 +62,8 @@ export async function saveSecret(api, token, url, secret, id) {
 }
 
 export async function encryptValue(valueToEncrypt, publicKey) {
-    const sodium = await libsodium();
+    await _sodium.ready;
+    const sodium = _sodium;
 
     let binkey = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL)
     let binsec = sodium.from_string(valueToEncrypt)
@@ -70,10 +71,4 @@ export async function encryptValue(valueToEncrypt, publicKey) {
     let encBytes = sodium.crypto_box_seal(binsec, binkey)
 
     let output = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL)
-}
-
-export async function libsodium() {
-  await _sodium.ready;
-
-  return _sodium;
 }

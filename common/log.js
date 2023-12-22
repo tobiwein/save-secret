@@ -1,10 +1,10 @@
 import core from '@actions/core'
 
-export function log(message: string) {
+export function log(message) {
     console.log(message);
 }
 
-export function debug(message: string) {
+export function debug(message) {
     core.debug(message);
 }
 

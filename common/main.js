@@ -74,7 +74,7 @@ export async function encryptValue(valueToEncrypt, publicKey) {
     return output;
 }
 
-export async function libsodium(): Promise<ISodium> {
+export async function libsodium() {
   const sodium = libsodiumWrapper.sodium;
   await sodium.ready;
 

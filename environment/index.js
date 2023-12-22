@@ -2,6 +2,7 @@ import core from '@actions/core';
 import github from '@actions/github';
 import { Octokit } from 'octokit';
 import { getPublicKey, encryptValue, saveSecret } from '../common/main.js';
+import { log, debug, logJson, debugJson } from '../common/log.js';
 
 async function run() {
     const token = core.getInput('token');
@@ -23,6 +24,7 @@ async function run() {
     const key = publicKey.key;
     const keyId = publicKey.KeyId;
 
+    log("will now encrypt");
     const encryptedValue = encryptValue(secret, key);
     const environmentSecretUrl = "repositories/" + repo + "/environments/" + env + "/secrets/" + name;
     saveSecret(api, token, environmentSecretUrl, encryptedValue, keyId);

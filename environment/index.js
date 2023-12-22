@@ -24,7 +24,6 @@ async function run() {
     const key = publicKey.key;
     const keyId = publicKey.KeyId;
 
-    log("will now encrypt");
     const encryptedValue = encryptValue(secret, key);
     const environmentSecretUrl = "repositories/" + repo + "/environments/" + env + "/secrets/" + name;
     saveSecret(api, token, environmentSecretUrl, encryptedValue, keyId);

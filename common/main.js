@@ -61,16 +61,16 @@ export async function saveSecret(api, token, url, secret, id) {
     }
 }
 
-export async function encryptValue(valueToEncrypt, publicKey) {
-    await _sodium.ready;
-    const sodium = _sodium;
+export function encryptValue(valueToEncrypt, publicKey) {
+    return _sodium.ready.then(() => {
+        const sodium = _sodium;
+        let binkey = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL)
+        let binsec = sodium.from_string(valueToEncrypt)
 
-    let binkey = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL)
-    let binsec = sodium.from_string(valueToEncrypt)
+        let encBytes = sodium.crypto_box_seal(binsec, binkey)
 
-    let encBytes = sodium.crypto_box_seal(binsec, binkey)
+        let output = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL)
 
-    let output = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL)
-
-    return output;
+        return output;
+    });
 }

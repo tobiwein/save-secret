@@ -1,8 +1,7 @@
 import core from '@actions/core';
 import github from '@actions/github';
 import { Octokit } from 'octokit';
-import { getPublicKey, encryptValue, saveSecret } from ../common/main.ts;
-import {  }
+import { getPublicKey, encryptValue, saveSecret } from '../common/main.ts';
 
 async function run() {
     const token = core.getInput('token');

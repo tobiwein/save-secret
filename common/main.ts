@@ -1,7 +1,7 @@
 import core from '@actions/core';
 import github from '@actions/github';
 import { Octokit } from 'octokit';
-import { log, debug, logJson, debugJson } from ./log.ts;
+import { log, debug, logJson, debugJson } from './log.ts';
 
 
 interface PublicKeyResponse {

@@ -1,6 +1,6 @@
 import core from '@actions/core';
 import github from '@actions/github';
-import libsodiumWrapper from 'libsodium-wrappers';
+import _sodium from 'libsodium-wrappers';
 import { Octokit } from 'octokit';
 import { log, debug, logJson, debugJson } from './log.js';
 
@@ -75,8 +75,7 @@ export async function encryptValue(valueToEncrypt, publicKey) {
 }
 
 export async function libsodium() {
-  const sodium = libsodiumWrapper.sodium;
-  await sodium.ready;
+  await _sodium.ready;
 
-  return sodium;
+  return _sodium;
 }

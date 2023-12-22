@@ -1,6 +1,7 @@
 import core from '@actions/core';
 import github from '@actions/github';
 import { Octokit } from 'octokit';
+import { log, debug, logJson, debugJson } from ./log.ts;
 
 
 interface PublicKeyResponse {
@@ -38,7 +39,7 @@ export async function getPublicKey(api: string, token: string, url: string): Pro
     }
 }
 
-export async function saveSecret(api: string, token: string, url: string, secret: string, id: string) {
+export async function saveSecret(api: string, token: string, url: string, secret: string, id: string): void {
     try {
         const octokit = new Octokit({
             baseUrl: api,
@@ -65,7 +66,7 @@ export async function saveSecret(api: string, token: string, url: string, secret
     }
 }
 
-export function encryptValue(valueToEncrypt: string, publicKey: string) {
+export function encryptValue(valueToEncrypt: string, publicKey: string): string {
     const sodium = require('libsodium-wrappers')
 
     sodium.ready.then(() => {

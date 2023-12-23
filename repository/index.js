@@ -17,9 +17,9 @@ async function run() {
     }
 
     log(token)
-    log(env)
     log(secret)
     log(api)
+    log(name)
     log(repoName)
     log(repoOwner)
 
@@ -34,8 +34,8 @@ async function run() {
 
     const encryptedValue = await encryptValue(secret, key);
     log("enc: " + encryptedValue);
-    const environmentSecretUrl = "/repos/" + repoOwner + "/" + repoName + "/actions/secrets/" + name;
-    saveSecret(api, token, environmentSecretUrl, encryptedValue, keyId);
+    const repoSecretUrl = "/repos/" + repoOwner + "/" + repoName + "/actions/secrets/" + name;
+    saveSecret(api, token, repoSecretUrl, encryptedValue, keyId);
 }
 
 run();

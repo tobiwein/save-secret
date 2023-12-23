@@ -80,4 +80,5 @@ export async function encryptValue(valueToEncrypt, publicKey) {
     log("output");
 
     log(output);
+    return output;
 }

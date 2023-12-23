@@ -33,6 +33,7 @@ async function run() {
     log(keyId)
 
     const encryptedValue = encryptValue(secret, key);
+    log("enc: " + encryptedValue);
     const environmentSecretUrl = "/repositories/" + repo + "/environments/" + env + "/secrets/" + name;
     saveSecret(api, token, environmentSecretUrl, encryptedValue, keyId);
 }

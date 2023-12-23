@@ -19,10 +19,21 @@ async function run() {
         repo = github.context.repositoryId;
     }
 
+    debug(token)
+    debug(env)
+    debug(secret)
+    debug(name)
+    debug(api)
+    debug(repo)
+
     const publicKeyUrl = "/repositories/" + repo + "/environments/" + env + "/secrets/public-key";
+    debug(publicKeyUrl)
     const publicKey = getPublicKey(api, token, publicKeyUrl);
+    debugJson(publicKey)
     const key = publicKey.key;
+    debug(key)
     const keyId = publicKey.KeyId;
+    debug(keyId)
 
     const encryptedValue = encryptValue(secret, key);
     const environmentSecretUrl = "repositories/" + repo + "/environments/" + env + "/secrets/" + name;

@@ -18,11 +18,11 @@ export async function getPublicKey(api, token, url) {
             }
         });
 
-        if (core.isDebug()) {
+        //if (core.isDebug()) {
             debug("Status: " + response.status);
             debug("URL: " + response.url);
             debugJson(response.headers);
-        }
+        //}
 
         return {
             key: response.data.key,
@@ -68,7 +68,7 @@ export async function encryptValue(valueToEncrypt, publicKey) {
     const sodium = _sodium;
     log("const sodium");
 
-    let binkey = sodium.from_base64(btoa(publicKey), sodium.base64_variants.ORIGINAL)
+    let binkey = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL)
     log("binkey");
     let binsec = sodium.from_string(valueToEncrypt)
     log("binsec");

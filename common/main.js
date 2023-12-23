@@ -19,9 +19,9 @@ export async function getPublicKey(api, token, url) {
         });
 
         //if (core.isDebug()) {
-            debug("Status: " + response.status);
-            debug("URL: " + response.url);
-            debugJson(response.headers);
+            log("Status: " + response.status);
+            log("URL: " + response.url);
+            log(response.headers);
         //}
 
         return {

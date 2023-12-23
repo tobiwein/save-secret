@@ -6,8 +6,8 @@ import { log, debug, logJson, debugJson } from '../common/log.js';
 
 async function run() {
     const token = core.getInput('token');
-    const repo = core.getInput('repositoryId');
-    const env = core.getInput('environmentName');
+    const repoName = core.getInput('repositoryName');
+    const repoOwner = core.getInput('repositoryOwner');
     const secret = core.getInput("secret");
     const name = core.getInput("secretName");
 
@@ -19,11 +19,11 @@ async function run() {
     log(token)
     log(env)
     log(secret)
-    log(name)
     log(api)
-    log(repo)
+    log(repoName)
+    log(repoOwner)
 
-    const publicKeyUrl = "/repositories/" + repo + "/environments/" + env + "/secrets/public-key";
+    const publicKeyUrl = "/repos/" + repoOwner + "/" + repoName + "/actions/secrets/public-key";
     log(publicKeyUrl)
     const publicKey = await getPublicKey(api, token, publicKeyUrl);
     log(publicKey)
@@ -34,7 +34,7 @@ async function run() {
 
     const encryptedValue = await encryptValue(secret, key);
     log("enc: " + encryptedValue);
-    const environmentSecretUrl = "/repositories/" + repo + "/environments/" + env + "/secrets/" + name;
+    const environmentSecretUrl = "/repos/" + repoOwner + "/" + repoName + "/actions/secrets/" + name;
     saveSecret(api, token, environmentSecretUrl, encryptedValue, keyId);
 }
 

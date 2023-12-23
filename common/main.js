@@ -4,7 +4,7 @@ import _sodium from 'libsodium-wrappers';
 import { Octokit } from 'octokit';
 import { log, debug, logJson, debugJson } from './log.js';
 
-export async function getPublicKey(api, token, pKUrl) {
+export async function getPublicKey(api, token, url) {
     try {
         const octokit = new Octokit({
             baseUrl: api,
@@ -12,7 +12,7 @@ export async function getPublicKey(api, token, pKUrl) {
         });
 
         const response = await octokit.request('GET {url}', {
-            url: pKUrl,
+            url: url,
             headers: {
                 'X-GitHub-Api-Version': '2022-11-28'
             }

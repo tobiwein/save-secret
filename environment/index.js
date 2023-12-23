@@ -26,7 +26,7 @@ async function run() {
     const publicKeyUrl = "/repositories/" + repo + "/environments/" + env + "/secrets/public-key";
     log(publicKeyUrl)
     const publicKey = getPublicKey(api, token, publicKeyUrl);
-    logJson(publicKey)
+    log(publicKey)
     const key = publicKey.key;
     log(key)
     const keyId = publicKey.KeyId;

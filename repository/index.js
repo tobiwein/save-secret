@@ -23,7 +23,7 @@ async function run() {
     log(repoName)
     log(repoOwner)
 
-    const publicKeyUrl = "/repos/" + repoOwner + "/" + repoName + "/actions/secrets/public-key";
+    const publicKeyUrl = "/repos/" + repoName + "/actions/secrets/public-key";
     log(publicKeyUrl)
     const publicKey = await getPublicKey(api, token, publicKeyUrl);
     log(publicKey)
@@ -34,7 +34,7 @@ async function run() {
 
     const encryptedValue = await encryptValue(secret, key);
     log("enc: " + encryptedValue);
-    const repoSecretUrl = "/repos/" + repoOwner + "/" + repoName + "/actions/secrets/" + name;
+    const repoSecretUrl = "/repos/" + repoName + "/actions/secrets/" + name;
     saveSecret(api, token, repoSecretUrl, encryptedValue, keyId);
 }
 

@@ -29,7 +29,7 @@ async function run() {
     log(publicKey)
     const key = publicKey.key;
     log(key)
-    const keyId = publicKey.KeyId;
+    const keyId = publicKey.keyId;
     log(keyId)
 
     const encryptedValue = await encryptValue(secret, key);

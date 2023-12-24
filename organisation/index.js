@@ -6,7 +6,7 @@ import { log, debug, logJson, debugJson } from '../common/log.js';
 
 async function run() {
     const token = core.getInput('token');
-    const repo = core.getInput('repository');
+    const org = core.getInput('organisation');
     const secret = core.getInput("secret");
     const name = core.getInput("secretName");
 
@@ -19,9 +19,9 @@ async function run() {
     log(secret)
     log(api)
     log(name)
-    log(repo)
+    log(org)
 
-    const publicKeyUrl = "/repos/" + repo + "/actions/secrets/public-key";
+    const publicKeyUrl = "/orgs/" + org + "/actions/secrets/public-key";
     log(publicKeyUrl)
     const publicKey = await getPublicKey(api, token, publicKeyUrl);
     log(publicKey)
@@ -32,8 +32,8 @@ async function run() {
 
     const encryptedValue = await encryptValue(secret, key);
     log("enc: " + encryptedValue);
-    const repoSecretUrl = "/repos/" + repo + "/actions/secrets/" + name;
-    saveSecret(api, token, repoSecretUrl, encryptedValue, keyId);
+    const orgSecretUrl = "/orgs/" + org + "/actions/secrets/" + name;
+    saveSecret(api, token, orgSecretUrl, encryptedValue, keyId);
 }
 
 run();

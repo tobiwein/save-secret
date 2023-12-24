@@ -1,16 +1,16 @@
-name: 'Save repository secret'
-description: 'Encrypts and saves a secret value to a repository'
+name: 'Save organisation secret'
+description: 'Encrypts and saves a secret value to an organisation'
 author: '@tobiwein'
 
 inputs:
   token:
-    description: 'GitHub access token for authorization.'
+    description: 'GitHub access token for authorization. Needs the admin:org scope.'
     required: true
   githubApi:
     description: 'URL of the REST-API of your organization.'
     default: ''
-  repository:
-    description: 'The owner and name of the repository without the .git extension. {OWNER}/{NAME}'
+  organisation:
+    description: 'The name of the organisation. The name is not case sensitive.'
     required: true
   secret:
     description: 'The secret value that you want to store.'

@@ -29,7 +29,7 @@ on default GitHub-API:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.repository }}
-        secret: 'secret_value'
+        secret: 'secret value'
         secretName: 'my_secret'
 
 on GitHub Enterprise:
@@ -41,7 +41,7 @@ on GitHub Enterprise:
         token: ${{ secrets.GITHUB_TOKEN }}
         githubApi: ${{ github.api_url }}
         repository: ${{ github.repository }}
-        secret: 'secret_value'
+        secret: 'secret value'
         secretName: 'my_secret'
 
 ## for environment secrets
@@ -52,14 +52,13 @@ on GitHub Enterprise:
 
 on default GitHub-API:
 
-
     - name: 'Save environment-secret'
       uses: tobiwein/save-secret/environment@v0.2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.repository }}
         environment: 'My environment'
-        secret: 'secret_value'
+        secret: 'secret value'
         secretName: 'my_secret'
 
 on GitHub Enterprise:
@@ -71,5 +70,17 @@ on GitHub Enterprise:
         githubApi: ${{ github.api_url }}
         repository: ${{ github.repository }}
         environment: 'My environment'
-        secret: 'secret_value'
+        secret: 'secret value'
+        secretName: 'my_secret'
+
+## for organisation secrets
+
+> :warning: **Experimental, as explained above**
+
+    - name: 'Save organisation secret'
+      uses: tobiwein/save-secret/organisation@v0.3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        organisation: ${{ github.repository_owner }}
+        secret: 'secret value'
         secretName: 'my_secret'

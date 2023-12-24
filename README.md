@@ -9,7 +9,7 @@ This GitHub Action can be used to create or update a secret in a repository or a
 # Inputs
 **`token:`** A token with write privileges to repository secrets. The default way is to use the token provided by GitHub with `${{ secrets.GITHUB_TOKEN }}`. You can also use your own personal access token.
 
-**`githubApi:`** *Optional* The default api used by this action is `https://api.github.com/`. However, if you use GitHub Enterprise, this api will probably differ. In this case, it is easiest to use `${{ github.api_url }}`.
+**`githubApi:`** *Optional* The default api used by this action is `https://api.github.com`. However, if you use GitHub Enterprise, this api will probably differ. In this case, it is easiest to use `${{ github.api_url }}`.
 
 **`repository:`** The owner and the name of the repository must be entered here in the style `{OWNER}/{REPO}`. The default way is to use `${{ github.repository }}`.
 

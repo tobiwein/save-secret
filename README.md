@@ -2,7 +2,8 @@
 This GitHub Action can be used to create or update a secret in a repository or an environment.
 
 #### Disclaimer
-> :warning: **Save organisation secret is experimental:** In this repository there is an action that can be used to set or update organization-secrets. However, this action is untested and can lead to unexpected errors when used. Therefore, use it at your own risk.
+> [!WARNING]
+> **Saving organisation secret is experimental:** In this repository there is an action that can be used to set or update organization-secrets. However, this action is untested and can lead to unexpected errors when used. Therefore, use it at your own risk.
 
 ***
 
@@ -75,7 +76,8 @@ on GitHub Enterprise:
 
 ### for organisation secrets
 
-> :warning: **Experimental, as explained above**
+> [!WARNING]
+> **Experimental, as explained [above](####-disclaimer)**
 
     - name: 'Save organisation secret'
       uses: tobiwein/save-secret/organisation@v0.6
@@ -84,3 +86,10 @@ on GitHub Enterprise:
         organisation: ${{ github.repository_owner }}
         secret: 'secret value'
         secretName: 'my_secret'
+
+***
+
+## What this action does
+Using the GitHub-API, the public key of your repository or environment will read. With the public key it is possible to use libsidium to encrypt your secret, which is necessary for the next step. The encrypted value will now be written into your secrets using the provided name.
+> [!NOTE]
+> All sensitive data will be masked and are not visible in the logs.

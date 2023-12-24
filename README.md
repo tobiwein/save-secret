@@ -90,6 +90,6 @@ on GitHub Enterprise:
 ***
 
 ## What this action does
-Using the GitHub-API, the public key of your repository or environment will read. With the public key it is possible to use libsidium to encrypt your secret, which is necessary for the next step. The encrypted value will now be written into your secrets using the provided name.
+Using the GitHub-API, the public key of your repository or environment will be read. With the public key it is possible to use libsidium to encrypt your secret, which is necessary for the next step. The encrypted value will now be written into your secrets using the provided name.
 > [!NOTE]
 > All sensitive data will be masked and are not visible in the logs.

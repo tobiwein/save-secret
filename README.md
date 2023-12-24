@@ -25,7 +25,7 @@ This GitHub Action can be used to create or update a secret in a repository or a
 on default GitHub-API:
 
     - name: 'Save repository-secret'
-      uses: tobiwein/save-secret/repository@v1
+      uses: tobiwein/save-secret/repository@v0.2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.repository }}
@@ -36,7 +36,7 @@ on GitHub Enterprise:
 
 
     - name: 'Save repository-secret in GHE'
-      uses: tobiwein/save-secret/repository@v1
+      uses: tobiwein/save-secret/repository@v0.2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         githubApi: ${{ github.api_url }}
@@ -54,7 +54,7 @@ on default GitHub-API:
 
 
     - name: 'Save environment-secret'
-      uses: tobiwein/save-secret/environment@v1
+      uses: tobiwein/save-secret/environment@v0.2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.repository }}
@@ -65,7 +65,7 @@ on default GitHub-API:
 on GitHub Enterprise:
 
     - name: 'Save environment-secret on GHE'
-      uses: tobiwein/save-secret/environment@v1
+      uses: tobiwein/save-secret/environment@v0.2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         githubApi: ${{ github.api_url }}

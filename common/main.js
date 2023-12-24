@@ -11,18 +11,18 @@ export async function getPublicKey(api, token, url) {
             auth: token
         });
 
-        const response = await octokit.request('GET {url}', {
+        const response = core.setSecret(await octokit.request('GET {url}', {
             url: url,
             headers: {
                 'X-GitHub-Api-Version': '2022-11-28'
             }
-        });
+        }));
 
-        //if (core.isDebug()) {
+        if (core.isDebug()) {
             log("Status: " + response.status);
             log("URL: " + response.url);
             log(response.headers);
-        //}
+        }
 
         return {
             key: response.data.key,
@@ -62,23 +62,15 @@ export async function saveSecret(api, token, url, secret, id) {
 }
 
 export async function encryptValue(valueToEncrypt, publicKey) {
-    log("start");
     await _sodium.ready;
-    log("sodium rdy");
     const sodium = _sodium;
-    log("const sodium");
 
-    let binkey = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL)
-    log("binkey");
-    let binsec = sodium.from_string(valueToEncrypt)
-    log("binsec");
+    let binkey = core.setSecret(sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL));
+    let binsec = core.setSecret(sodium.from_string(valueToEncrypt));
 
-    let encBytes = sodium.crypto_box_seal(binsec, binkey)
-    log("encBytes");
+    let encBytes = core.setSecret(sodium.crypto_box_seal(binsec, binkey));
 
-    let output = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL)
-    log("output");
+    let output = core.setSecret(sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL));
 
-    log(output);
     return output;
 }

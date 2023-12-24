@@ -9,8 +9,22 @@ This GitHub Action can be used to create or update a secret in a repository or a
 > **Saving organisation secret is experimental:** In this repository there is an action that can be used to set or update organization-secrets. However, this action is untested and can lead to unexpected errors when used. Therefore, use it at your own risk.
 
 ***
+<br>
+
+## Content
+
+- [Input variables](#inputs)
+- [How to use](#how-to-use)
+    - [for repository secrets](#for-repository-secrets)
+    - [for environment secrets](#for-environment-secrets)
+- [What this action does](#what-this-action-does)
+
+***
+
+<br>
 
 ## Inputs
+
 **`token:`** A token with write privileges to repository secrets. The default way is to use the token provided by GitHub with `${{ secrets.GITHUB_TOKEN }}`. You can also use your own personal access token.
 
 **`githubApi:`** *Optional* The default api used by this action is `https://api.github.com`. However, if you use GitHub Enterprise, this api will probably differ. In this case, it is easiest to use `${{ github.api_url }}`.
@@ -23,7 +37,10 @@ This GitHub Action can be used to create or update a secret in a repository or a
 
 ***
 
+<br>
+
 ## How to use
+
 ### for repository secrets
 
 on default GitHub-API:
@@ -48,9 +65,12 @@ on GitHub Enterprise:
         secret: 'secret value'
         secretName: 'my_secret'
 
+
+<br>
+
 ### for environment secrets
 
-#### To save a secret in an environment, an additional secret is required:
+To save a secret in an environment, an additional secret is required:
 
 **`environment:`** This field represents the the Name of the environment you want to store your secret in. It is not case sensitive.
 
@@ -65,22 +85,16 @@ on default GitHub-API:
         secret: 'secret value'
         secretName: 'my_secret'
 
-on GitHub Enterprise:
 
-    - name: 'Save environment-secret on GHE'
-      uses: tobiwein/save-secret/environment@v0.6
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        githubApi: ${{ github.api_url }}
-        repository: ${{ github.repository }}
-        environment: 'My environment'
-        secret: 'secret value'
-        secretName: 'my_secret'
+*also on GitHub Enterprise*
+
+<br>
 
 ### for organisation secrets
 
 > [!WARNING]
-> **Experimental, as explained [above](####-disclaimer)**
+> **Experimental, as explained [above](#disclaimer)**
+
 
     - name: 'Save organisation secret'
       uses: tobiwein/save-secret/organisation@v0.6
@@ -91,6 +105,8 @@ on GitHub Enterprise:
         secretName: 'my_secret'
 
 ***
+
+<br>
 
 ## What this action does
 Using the GitHub-API, the public key of your repository or environment will be read. With the public key it is possible to use libsidium to encrypt your secret, which is necessary for the next step. The encrypted value will now be written into your secrets using the provided name.

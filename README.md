@@ -13,11 +13,11 @@ This GitHub Action can be used to create or update a secret in a repository or a
 
 ## Content
 
-- [Input variables](##-inputs)
-- [How to use](##-how-to-use)
-    - [for repository secrets](###-for-repository-secrets)
-    - [for environment secrets](###-for-environment-secrets)
-- [What this action does](##-what-this-action-does)
+- [Input variables](#inputs)
+- [How to use](#how-to-use)
+    - [for repository secrets](#for-repository-secrets)
+    - [for environment secrets](#for-environment-secrets)
+- [What this action does](#what-this-action-does)
 
 ***
 
@@ -93,7 +93,7 @@ on default GitHub-API:
 ### for organisation secrets
 
 > [!WARNING]
-> **Experimental, as explained [above](####-disclaimer)**
+> **Experimental, as explained [above](#disclaimer)**
 
 
     - name: 'Save organisation secret'

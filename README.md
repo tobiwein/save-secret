@@ -1,4 +1,5 @@
 [![GitHub release (with filter)](https://img.shields.io/github/v/release/tobiwein/save-secret?label=verion)](https://github.com/tobiwein/save-secret/releases/tag/v0.6)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # save-secret GitHub Actions
 This GitHub Action can be used to create or update a secret in a repository or an environment.

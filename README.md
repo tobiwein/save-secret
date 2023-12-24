@@ -1,4 +1,4 @@
-[![GitHub release (with filter)](https://img.shields.io/github/v/release/tobiwein/save-secret?label=verion&include_prereleases)](https://github.com/tobiwein/save-secret/releases/tag/v0.6)
+[![GitHub release (with filter)](https://img.shields.io/github/v/release/tobiwein/save-secret?label=version&include_prereleases)](https://github.com/tobiwein/save-secret/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # save-secret GitHub Actions

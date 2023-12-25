@@ -18,7 +18,7 @@ export async function getPublicKey(api, token, url) {
             }
         });
 
-        log("Response \n" + response);
+        logJson("Response \n" + response);
 
         if (core.isDebug()) {
             log("Status: " + response.status);
@@ -52,7 +52,7 @@ export async function saveSecret(api, token, url, secret, id) {
             }
         });
 
-        log("Saving response \n" + response)
+        logJson("Saving response \n" + response)
 
         if (core.isDebug()) {
             debug("Status: " + response.status);

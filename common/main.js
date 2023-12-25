@@ -18,7 +18,8 @@ export async function getPublicKey(api, token, url) {
             }
         });
 
-        logJson("Response \n" + response);
+        log("Response from GitHub")
+        logJson(response);
 
         debug("Status: " + response.status);
         debug("URL: " + response.url);

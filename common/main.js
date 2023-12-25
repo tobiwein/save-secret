@@ -20,11 +20,9 @@ export async function getPublicKey(api, token, url) {
 
         logJson("Response \n" + response);
 
-        if (core.isDebug()) {
-            log("Status: " + response.status);
-            log("URL: " + response.url);
-            log(response.headers);
-        }
+        debug("Status: " + response.status);
+        debug("URL: " + response.url);
+        debugJson(response.headers);
 
         return {
             key: response.data.key,
@@ -54,11 +52,9 @@ export async function saveSecret(api, token, url, secret, id) {
 
         logJson("Saving response \n" + response)
 
-        if (core.isDebug()) {
-            debug("Status: " + response.status);
-            debug("URL: " + response.url);
-            debugJson(response.headers);
-        }
+        debug("Status: " + response.status);
+        debug("URL: " + response.url);
+        debugJson(response.headers);
     } catch (error) {
         core.setFailed(error.message);
         throw error;

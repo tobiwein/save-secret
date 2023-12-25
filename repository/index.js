@@ -17,13 +17,14 @@ async function run() {
     log(`Retrieving public key of repository ${repo}`);
 
     const publicKeyUrl = `/repos/${repo}/actions/secrets/public-key`;
-    log()
+    log(publicKeyUrl);
     const publicKey = core.setSecret(await getPublicKey(api, token, publicKeyUrl));
     const key = core.setSecret(publicKey.key);
     const keyId = core.setSecret(publicKey.keyId);
 
     const encryptedValue = core.setSecret(await encryptValue(secret, key));
     const repoSecretUrl = `/repos/${repo}/actions/secrets/${name}`;
+    log(repoSecretUrl)
 
     log(`Saving secret value with name ${name}`);
 

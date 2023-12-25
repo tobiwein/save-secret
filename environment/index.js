@@ -18,12 +18,14 @@ async function run() {
     log(`Retireving public key of environment ${env} of repository ${repo}`);
 
     const publicKeyUrl = `/repositories/${repo}/environments/${env}/secrets/public-key`;
+    log(publicKeyUrl)
     const publicKey = core.setSecret(await getPublicKey(api, token, publicKeyUrl));
     const key = core.setSecret(publicKey.key);
     const keyId = core.setSecret(publicKey.keyId);
 
     const encryptedValue = core.setSecret(await encryptValue(secret, key));
     const environmentSecretUrl = `/repositories/${repo}/environments/${env}/secrets/${name}`;
+    log(environmentSecretUrl)
 
     log(`Saving secret value with name ${name}`);
 

@@ -51,6 +51,7 @@ export async function saveSecret(api, token, url, secret, id) {
             }
         });
 
+        log("Response from saving");
         logJson(response)
 
         debug("Status: " + response.status);

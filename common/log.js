@@ -10,13 +10,22 @@ export function debug(message) {
     }
 }
 
+function isNestedKeyValuePair(value) {
+    return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
 export function logJson(jsonObj) {
-    Object.entries(jsonObj).forEach(([key, value]) => {
-        console.log(key + ": " + value);
-    });
-    for (const key in jsonObj) {
-        if (jsonObj.hasOwnProperty(key)) {
-            log(`${key}: ${jsonObj[key]}`);
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            var value = obj[key];
+    
+            console.log(`${indent}${key}:`);
+    
+            if (isNestedKeyValuePair(value)) {
+                printKeyValuePairs(value, `${indent}  `);
+            } else {
+                console.log(`${indent}  ${value}`);
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ async function run() {
         api = github.context.apiUrl;
     }
 
-    log(`Retrieving public key of organisation ${org}.`);
+    log(`Retrieving public key of organisation '${org}'.`);
 
     const publicKeyUrl = `/orgs/${org}/actions/secrets/public-key`;
     const publicKey = await getPublicKey(api, token, publicKeyUrl);
@@ -27,7 +27,7 @@ async function run() {
     const encryptedValue = await encryptValue(secret, key);
     const orgSecretUrl = `/orgs/${org}/actions/secrets/${name}`;
 
-    log(`Saving secret value with name ${name}.`);
+    log(`Saving secret value with name '${name}'.`);
 
     saveSecret(api, token, orgSecretUrl, encryptedValue, keyId);
 

@@ -28,7 +28,7 @@ export function logJson(obj, indent = '') {
     }
 }
 
-export function debugJson(obj, indet = '') {
+export function debugJson(obj, indent = '') {
     if (core.isDebug()) {
         for (var key in obj) {
             if (obj.hasOwnProperty(key)) {

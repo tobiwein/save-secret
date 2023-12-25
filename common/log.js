@@ -16,7 +16,7 @@ export function logJson(jsonObj) {
     });
     for (const key in jsonObj) {
         if (jsonObj.hasOwnProperty(key)) {
-            log("${key}: ${jsonObj[key]}");
+            log(`${key}: ${jsonObj[key]}`);
         }
     }
 }
@@ -25,7 +25,7 @@ export function debugJson(jsonObj) {
     if (core.isDebug()) {
         for (const key in jsonObj) {
             if (jsonObj.hasOwnProperty(key)) {
-                debug("${key}: ${jsonObj[key]}");
+                debug(`${key}: ${jsonObj[key]}`);
             }
         }
     }

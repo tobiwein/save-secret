@@ -4,7 +4,7 @@ import { getPublicKey, encryptValue, saveSecret } from '../common/main.js';
 import { log, debug, logJson, debugJson } from '../common/log.js';
 
 async function run() {
-    const token = core.setSecret(core.getInput('token'));
+    const token = core.getInput('token');
     const repo = core.getInput('repositoryId');
     const env = core.getInput('environment');
     const secret = core.setSecret(core.getInput("secret"));
@@ -15,7 +15,7 @@ async function run() {
         api = github.context.apiUrl;
     }
 
-    log(`Retireving public key of environment ${env} of repository ${repo}`);
+    log(`Retireving public key of environment ${env} with repository ID ${repo}`);
 
     const publicKeyUrl = `/repositories/${repo}/environments/${env}/secrets/public-key`;
     log(publicKeyUrl)

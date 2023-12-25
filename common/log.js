@@ -22,17 +22,23 @@ export function logJson(obj, indent = '') {
             if (isNestedKeyValuePair(value)) {
                 logJson(value, `${indent}  `);
             } else {
-                console.log(`${indent}${key}: ${value}`);
+                log(`${indent}${key}: ${value}`);
             }
         }
     }
 }
 
-export function debugJson(jsonObj) {
+export function debugJson(obj, indet = '') {
     if (core.isDebug()) {
-        for (const key in jsonObj) {
-            if (jsonObj.hasOwnProperty(key)) {
-                debug(`${key}: ${jsonObj[key]}`);
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                var value = obj[key];
+      
+                if (isNestedKeyValuePair(value)) {
+                    debugJson(value, `${indent}  `);
+                } else {
+                    debug(`${indent}${key}: ${value}`);
+                }
             }
         }
     }

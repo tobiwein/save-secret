@@ -1,8 +1,7 @@
 import core from '@actions/core';
-import github from '@actions/github';
 import _sodium from 'libsodium-wrappers';
 import { Octokit } from 'octokit';
-import { log, debug, logJson, debugJson } from './log.js';
+import { debug, debugJson } from './log.js';
 
 export async function getPublicKey(api, token, url) {
     try {
@@ -18,17 +17,14 @@ export async function getPublicKey(api, token, url) {
             }
         });
 
-        log("Response from GitHub")
-        logJson(response);
-
-        debug("Status: " + response.status);
-        debug("URL: " + response.url);
-        debugJson(response.headers);
+        debug("Response from GitHub retrieving public key:");
+        debugJson(response);
 
         return {
             key: response.data.key,
             keyId: response.data.key_id
         };
+        
     } catch (error) {
         core.setFailed(error.message);
         throw error;
@@ -51,12 +47,9 @@ export async function saveSecret(api, token, url, secret, id) {
             }
         });
 
-        log("Response from saving");
-        logJson(response)
+        debug("Response from GitHub saving secret:");
+        debugJson(response);
 
-        debug("Status: " + response.status);
-        debug("URL: " + response.url);
-        debugJson(response.headers);
     } catch (error) {
         core.setFailed(error.message);
         throw error;

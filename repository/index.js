@@ -1,7 +1,7 @@
 import core from '@actions/core';
 import github from '@actions/github';
 import { getPublicKey, encryptValue, saveSecret } from '../common/main.js';
-import { log, debug, logJson, debugJson } from '../common/log.js';
+import { log, debug } from '../common/log.js';
 
 async function run() {
     const token = core.getInput('token');
@@ -14,24 +14,24 @@ async function run() {
         api = github.context.apiUrl;
     }
 
-    log(`Retrieving public key of repository ${repo}`);
+    log(`Retrieving public key of repository ${repo}.`);
 
     const publicKeyUrl = `/repos/${repo}/actions/secrets/public-key`;
-    log(publicKeyUrl);
     const publicKey = await getPublicKey(api, token, publicKeyUrl);
     const key = publicKey.key;
     const keyId = publicKey.keyId;
 
-    log(`Public Key: ${key}`);
-    log(`Key ID: ${keyId}`);
+    debug(`Repository public Key: ${key}`);
+    debug(`Key ID: ${keyId}`);
 
     const encryptedValue = await encryptValue(secret, key);
     const repoSecretUrl = `/repos/${repo}/actions/secrets/${name}`;
-    log(repoSecretUrl)
 
-    log(`Saving secret value with name ${name}`);
+    log(`Saving secret value with name ${name}.`);
 
     saveSecret(api, token, repoSecretUrl, encryptedValue, keyId);
+
+    log("Done.");
 }
 
 run();

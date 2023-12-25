@@ -11,12 +11,12 @@ export async function getPublicKey(api, token, url) {
             auth: token
         });
 
-        const response = core.setSecret(await octokit.request('GET {url}', {
+        const response = await octokit.request('GET {url}', {
             url: url,
             headers: {
                 'X-GitHub-Api-Version': '2022-11-28'
             }
-        }));
+        });
 
         log("Response \n" + response);
 

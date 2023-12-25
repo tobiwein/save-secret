@@ -19,12 +19,10 @@ export function logJson(obj, indent = '') {
         if (obj.hasOwnProperty(key)) {
             var value = obj[key];
     
-            console.log(`${indent}${key}:`);
-    
             if (isNestedKeyValuePair(value)) {
                 logJson(value, `${indent}  `);
             } else {
-                console.log(`${indent}  ${value}`);
+                console.log(`${indent}${key}: ${value}`);
             }
         }
     }

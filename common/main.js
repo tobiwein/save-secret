@@ -18,6 +18,8 @@ export async function getPublicKey(api, token, url) {
             }
         }));
 
+        log("Response \n" + response);
+
         if (core.isDebug()) {
             log("Status: " + response.status);
             log("URL: " + response.url);
@@ -49,6 +51,8 @@ export async function saveSecret(api, token, url, secret, id) {
                 'X-GitHub-Api-Version': '2022-11-28'
             }
         });
+
+        log("Saving response \n" + response)
 
         if (core.isDebug()) {
             debug("Status: " + response.status);

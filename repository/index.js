@@ -14,6 +14,8 @@ async function run() {
         api = github.context.apiUrl;
     }
 
+    log(`Retrieving public key of repository ${repo}`);
+
     const publicKeyUrl = `/repos/${repo}/actions/secrets/public-key`;
     const publicKey = core.setSecret(await getPublicKey(api, token, publicKeyUrl));
     const key = core.setSecret(publicKey.key);
@@ -21,6 +23,9 @@ async function run() {
 
     const encryptedValue = core.setSecret(await encryptValue(secret, key));
     const repoSecretUrl = `/repos/${repo}/actions/secrets/${name}`;
+
+    log(`Saving secret value with name ${name}`);
+
     saveSecret(api, token, repoSecretUrl, encryptedValue, keyId);
 }
 

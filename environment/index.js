@@ -15,6 +15,8 @@ async function run() {
         api = github.context.apiUrl;
     }
 
+    log(`Retireving public key of environment ${env} of repository ${repo}`);
+
     const publicKeyUrl = `/repositories/${repo}/environments/${env}/secrets/public-key`;
     const publicKey = core.setSecret(await getPublicKey(api, token, publicKeyUrl));
     const key = core.setSecret(publicKey.key);
@@ -22,6 +24,9 @@ async function run() {
 
     const encryptedValue = core.setSecret(await encryptValue(secret, key));
     const environmentSecretUrl = `/repositories/${repo}/environments/${env}/secrets/${name}`;
+
+    log(`Saving secret value with name ${name}`);
+
     saveSecret(api, token, environmentSecretUrl, encryptedValue, keyId);
 }
 

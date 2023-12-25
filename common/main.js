@@ -69,12 +69,12 @@ export async function encryptValue(valueToEncrypt, publicKey) {
     await _sodium.ready;
     const sodium = _sodium;
 
-    let binkey = core.setSecret(sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL));
-    let binsec = core.setSecret(sodium.from_string(valueToEncrypt));
+    let binkey = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL);
+    let binsec = sodium.from_string(valueToEncrypt);
 
-    let encBytes = core.setSecret(sodium.crypto_box_seal(binsec, binkey));
+    let encBytes = sodium.crypto_box_seal(binsec, binkey);
 
-    let output = core.setSecret(sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL));
+    let output = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
 
     return output;
 }

@@ -4,7 +4,7 @@ import { getPublicKey, encryptValue, saveSecret } from '../common/main.js';
 import { log, debug, logJson, debugJson } from '../common/log.js';
 
 async function run() {
-    const token = core.setSecret(core.getInput('token'));
+    const token = core.getInput('token');
     const repo = core.getInput('repository');
     const secret = core.setSecret(core.getInput("secret"));
     const name = core.getInput("secretName");
@@ -18,11 +18,14 @@ async function run() {
 
     const publicKeyUrl = `/repos/${repo}/actions/secrets/public-key`;
     log(publicKeyUrl);
-    const publicKey = core.setSecret(await getPublicKey(api, token, publicKeyUrl));
-    const key = core.setSecret(publicKey.key);
-    const keyId = core.setSecret(publicKey.keyId);
+    const publicKey = await getPublicKey(api, token, publicKeyUrl);
+    const key = publicKey.key;
+    const keyId = publicKey.keyId;
 
-    const encryptedValue = core.setSecret(await encryptValue(secret, key));
+    log(`Public Key: ${key}`);
+    log(`Key ID: ${keyId}`);
+
+    const encryptedValue = await encryptValue(secret, key);
     const repoSecretUrl = `/repos/${repo}/actions/secrets/${name}`;
     log(repoSecretUrl)
 

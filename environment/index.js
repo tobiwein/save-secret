@@ -23,11 +23,10 @@ async function run() {
     const key = publicKey.key;
     const keyId = publicKey.keyId;
 
-    core.setSecret(publicKey);
-    core.setSecret(key);
-    core.setSecret(keyId);
+    log(`Public key: ${key}`);
+    log(`Key ID: ${keyId}`);
 
-    const encryptedValue = core.setSecret(await encryptValue(secret, key));
+    const encryptedValue = await encryptValue(secret, key);
     const environmentSecretUrl = `/repositories/${repo}/environments/${env}/secrets/${name}`;
     log(environmentSecretUrl)
 

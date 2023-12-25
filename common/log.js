@@ -22,7 +22,7 @@ export function logJson(obj, indent = '') {
             console.log(`${indent}${key}:`);
     
             if (isNestedKeyValuePair(value)) {
-                printKeyValuePairs(value, `${indent}  `);
+                logJson(value, `${indent}  `);
             } else {
                 console.log(`${indent}  ${value}`);
             }

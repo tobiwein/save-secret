@@ -14,7 +14,7 @@ function isNestedKeyValuePair(value) {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-export function logJson(jsonObj) {
+export function logJson(obj) {
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
             var value = obj[key];

@@ -12,7 +12,7 @@ inputs:
   repositoryId:
     description: 'The unique identifier of the repository.'
     required: true
-  environmentName:
+  environment:
     description: 'The name of the environment.'
     required: true
   secret:

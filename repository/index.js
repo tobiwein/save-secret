@@ -17,6 +17,7 @@ async function run() {
     log(`Retrieving public key of repository ${repo}`);
 
     const publicKeyUrl = `/repos/${repo}/actions/secrets/public-key`;
+    log()
     const publicKey = core.setSecret(await getPublicKey(api, token, publicKeyUrl));
     const key = core.setSecret(publicKey.key);
     const keyId = core.setSecret(publicKey.keyId);

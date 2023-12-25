@@ -6,7 +6,7 @@ import { log, debug, logJson, debugJson } from '../common/log.js';
 async function run() {
     const token = core.setSecret(core.getInput('token'));
     const repo = core.getInput('repositoryId');
-    const env = core.getInput('environmentName');
+    const env = core.getInput('environment');
     const secret = core.setSecret(core.getInput("secret"));
     const name = core.getInput("secretName");
 

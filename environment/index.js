@@ -7,7 +7,7 @@ async function run() {
     const token = core.getInput('token');
     const repo = core.getInput('repositoryId');
     const env = core.getInput('environment');
-    const secret = core.setSecret(core.getInput("secret"));
+    const secret = core.getInput("secret");
     const name = core.getInput("secretName");
 
     let api = core.getInput('githubApi');

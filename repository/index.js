@@ -6,7 +6,7 @@ import { log, debug, logJson, debugJson } from '../common/log.js';
 async function run() {
     const token = core.getInput('token');
     const repo = core.getInput('repository');
-    const secret = core.setSecret(core.getInput("secret"));
+    const secret = core.getInput("secret");
     const name = core.getInput("secretName");
 
     let api = core.getInput('githubApi');

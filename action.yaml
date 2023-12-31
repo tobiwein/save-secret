@@ -1,6 +1,7 @@
 name: 'Save repository secret'
 description: 'Encrypts and saves a secret value to a repository'
 author: '@tobiwein'
+icon: 'save'
 
 inputs:
   token:
